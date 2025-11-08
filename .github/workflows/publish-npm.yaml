@@ -27,21 +27,3 @@ jobs:
 
       - name: Building the package
         run: wasm-pack build --scope="windpress" --release
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-          registry-url: "https://registry.npmjs.org"
-
-      - run: npm pkg fix
-        working-directory: pkg
-
-      - name: Publish package to npm
-        run: npm publish
-        working-directory: pkg
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-      # - name: Publish package to pkg.pr.new
-      #   run: npx pkg-pr-new publish
-      #   working-directory: pkg
