@@ -28,10 +28,11 @@ jobs:
       - name: Building the package
         run: wasm-pack build --scope="windpress" --release
         
-      - name: Upload artifacts
+      - name: Upload wasm artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: bindings-${{ matrix.target }}
+          name: wasm-artifacts
           path: |
-            *.node
-            ${{ matrix.binary }}
+            pkg/**/*.wasm
+            pkg/**/*.js
+            pkg/package.json
